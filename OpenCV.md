@@ -65,3 +65,54 @@ vc.release()
 cv2.destroyAllWindows()
 ```
 
+### 1.3 截取部分图像数据
+
+```python
+cutted = img[50:700, 50:700]
+```
+
+### 1.4 颜色通道数据
+
+```python
+b, g ,r = cv2.split(img)
+img = cv2.merge((b, g ,r))
+
+# R
+cur_img = img.copy()
+cur_img[:, :, 0] = 0
+cur_img[:, :, 1] = 0
+cv_show('Red', cur_img)
+
+# B
+cur_img = img.copy()
+cur_img[:, :, 1] = 0
+cur_img[:, :, 2] = 0
+cv_show('Blue', cur_img)
+
+# G
+cur_img = img.copy()
+cur_img[:, :, 0] = 0
+cur_img[:, :, 2] = 0
+cv_show('Green', cur_img)
+```
+
+### 1.5 边界填充
+
+```python
+# 复制法，复制最边缘的像素
+replicate = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size, borderType=cv2.BORDER_REPLICATE)
+# 反射法，对感兴趣的图像中的像素两边进行复制
+# fedcba|abcdefgh|hgfedcb
+reflect = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size, borderType=cv2.BORDER_REFLECT)
+# 反射法，以最边缘像素为轴，对称
+# gfedcb|abcdefgh|gfedcba
+reflect101 = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size, borderType=cv2.BORDER_REFLECT_101)
+# 外包装法
+# cdefgh|abcdefgh|abc
+wrap = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size, borderType=cv2.BORDER_WRAP)
+# 常数法，常数值填充
+constant = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size, borderType=cv2.BORDER_CONSTANT, value=0)
+```
+
+
+
