@@ -10,7 +10,8 @@ replicate = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size
 reflect = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size, borderType=cv2.BORDER_REFLECT)
 reflect101 = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size, borderType=cv2.BORDER_REFLECT_101)
 wrap = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size, borderType=cv2.BORDER_WRAP)
-constant = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size, borderType=cv2.BORDER_CONSTANT, value=0)
+constant = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size, borderType=cv2.BORDER_CONSTANT,
+                              value=0)
 
 plt.subplot(231), plt.imshow(img, 'gray'), plt.title('ORIGINAL')
 plt.subplot(232), plt.imshow(replicate, 'gray'), plt.title('REPLICATE')
