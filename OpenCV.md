@@ -114,5 +114,32 @@ wrap = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size, bor
 constant = cv2.copyMakeBorder(img, top_size, bottom_size, left_size, right_size, borderType=cv2.BORDER_CONSTANT, value=0)
 ```
 
+### 1.6 数值计算
 
+```python
+res = cv2.add(imgRGB, imgRGB)
+```
 
+### 1.7 图像融合
+
+```python
+imgResized = cv2.resize(img2, (img1.shape[0], img1.shape[1]))
+cv2.resize(img2, (0, 0), fx=2, fy=1)
+```
+
+### 1.8 图像阈值
+
+```python
+ret, dst = cv2.threshold(src, thresh, maxval, type)
+```
+
+- src：输入图，只能输入单通道图像，通常来说是灰度图
+- dst：输出图
+- thresh：阈值
+- maxval：当像素值超过了阈值（或者小于阈值，根据 type 来决定），所赋予的值
+- type：二值化操作的类型，包含以下 5 种类型
+    - cv2.THRESH_BINARY：超过阈值部分取 maxval（最大值），否则取 0
+    - cv2.THRESH_BINARY_INV：THRESH_BINARY 的反转
+    - cv2.THRESH_TRUNC：大于阈值部分设为阈值，否则不变
+    - cv2.THRESH_TOZERO：大于阈值部分不改变，否则设为 0
+    - cv2.THRESH_TOZERO_INV：THRESH_TOZERO 的反转
