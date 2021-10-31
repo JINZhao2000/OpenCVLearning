@@ -143,3 +143,53 @@ ret, dst = cv2.threshold(src, thresh, maxval, type)
     - cv2.THRESH_TRUNC：大于阈值部分设为阈值，否则不变
     - cv2.THRESH_TOZERO：大于阈值部分不改变，否则设为 0
     - cv2.THRESH_TOZERO_INV：THRESH_TOZERO 的反转
+
+### 1.9 图像平滑
+
+```python
+# 均值滤波
+# 简单的平均卷积操作
+blur = cv2.blur(img, (3, 3))
+# 方框滤波
+# 基本和均值一样，可以选择归一化，未归一化容易越界
+box = cv2.boxFilter(img, -1, (3, 3), normalize=True)
+# 高斯滤波
+# 高斯模糊的卷积核里的数值是满足高斯分布，相当于更重视中间的
+gaussian = cv2.GaussianBlur(img, (5, 5), 1)
+# 中值滤波
+# 相当于用zhi'ji
+median = cv2.medianBlur(img, 5)
+```
+
+### 1.10 形态学 - 腐蚀操作
+
+```python
+kernel = np.ones((5, 5), np.uint8)
+erosion = cv2.erode(img, kernel, iterations=1)
+```
+
+### 1.11 形态学 - 膨胀操作
+
+```python
+kernel = np.ones((5, 5), np.uint8)
+dilate = cv2.dilate(img, kernel, iterations=1)
+```
+
+### 1.12 开运算与闭运算
+
+```python
+kernel = np.ones((5, 5), np.uint8)
+# 开 先腐蚀再膨胀
+opening = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
+# 闭 先膨胀再腐蚀
+closing = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)
+```
+
+### 1.13 梯度运算
+
+```python
+# 梯度 = 膨胀 - 腐蚀 （减去）
+kernel = np.ones((7, 7), np.uint8)
+gradient = cv2.morphologyEx(pie, cv2.MORPH_GRADIENT, kernel)
+```
+
